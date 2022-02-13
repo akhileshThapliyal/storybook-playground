@@ -117,7 +117,7 @@
         },
         {
             "name": "ButtonComponent",
-            "id": "component-ButtonComponent-79c698c4b811721f7ff22e9e8606b56b86a04e5535a90c238cd28ece4f1fa0cfb8941c31eaa740356df8e56df6d60eac7fdedd2bc6236d5ba0a31f4a21cf1d0f",
+            "id": "component-ButtonComponent-210f6d30aa81dbc452c4f95be149c788e16205a7cab6347328a5e062e183c53875a62d9c837996ee568d9b73e0fbcffe23219aacdc8861dfad5804ca8093a8c4",
             "file": "src/stories/button.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -129,7 +129,7 @@
                 "./button.css"
             ],
             "styles": [],
-            "template": "<button   type=\"button\"\n   (click)=\"onClick.emit($event)\"\n   class=\"storybook-button {{labelClass}}\"\n   [ngStyle]=\"{ 'background-color': backgroundColor }\"\n >\n   {{ label }} {{ label2 }}\n </button>",
+            "template": "<button   type=\"button\"\n   (click)=\"onClick.emit($event)\"\n   class=\"storybook-button {{labelClass}}\"\n   [ngStyle]=\"{ 'background-color': backgroundColor }\"\n >\n   {{ label }} ~ {{ label2 }}\n </button>",
             "templateUrl": [],
             "viewProviders": [],
             "inputsClass": [
@@ -150,15 +150,15 @@
                     "deprecationMessage": "",
                     "jsdoctags": [
                         {
-                            "pos": 879,
-                            "end": 892,
+                            "pos": 881,
+                            "end": 894,
                             "flags": 4227072,
                             "modifierFlagsCache": 0,
                             "transformFlags": 0,
                             "kind": 325,
                             "tagName": {
-                                "pos": 880,
-                                "end": 888,
+                                "pos": 882,
+                                "end": 890,
                                 "flags": 4227072,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
@@ -181,15 +181,15 @@
                     "deprecationMessage": "",
                     "jsdoctags": [
                         {
-                            "pos": 972,
-                            "end": 985,
+                            "pos": 974,
+                            "end": 987,
                             "flags": 4227072,
                             "modifierFlagsCache": 0,
                             "transformFlags": 0,
                             "kind": 325,
                             "tagName": {
-                                "pos": 973,
-                                "end": 981,
+                                "pos": 975,
+                                "end": 983,
                                 "flags": 4227072,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
@@ -212,15 +212,15 @@
                     "deprecationMessage": "",
                     "jsdoctags": [
                         {
-                            "pos": 1064,
-                            "end": 1077,
+                            "pos": 1066,
+                            "end": 1079,
                             "flags": 4227072,
                             "modifierFlagsCache": 0,
                             "transformFlags": 0,
                             "kind": 325,
                             "tagName": {
-                                "pos": 1065,
-                                "end": 1073,
+                                "pos": 1067,
+                                "end": 1075,
                                 "flags": 4227072,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
@@ -294,8 +294,8 @@
                     "jsdoctags": [
                         {
                             "name": {
-                                "pos": 1240,
-                                "end": 1247,
+                                "pos": 1242,
+                                "end": 1249,
                                 "flags": 4227072,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
@@ -306,8 +306,8 @@
                             "deprecated": false,
                             "deprecationMessage": "",
                             "tagName": {
-                                "pos": 1234,
-                                "end": 1239,
+                                "pos": 1236,
+                                "end": 1241,
                                 "flags": 4227072,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
@@ -326,7 +326,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges, ChangeDetectorRef } from '@angular/core';\n\n@Component({\n  selector: 'storybook-button',\n  template: ` <button\n    type=\"button\"\n    (click)=\"onClick.emit($event)\"\n    class=\"storybook-button {{labelClass}}\"\n    [ngStyle]=\"{ 'background-color': backgroundColor }\"\n  >\n    {{ label }} {{ label2 }}\n  </button>`,\n  styleUrls: ['./button.css'],\n})\nexport default class ButtonComponent implements OnChanges {\n  \n  constructor(\n    private ref: ChangeDetectorRef\n  ) {\n    \n  }\n\n  /**\n   * Is this the principal call to action on the page?\n   */\n  @Input()\n  primary = false;\n\n  /**\n   * What background color to use\n   */\n  @Input()\n  backgroundColor?: string;\n\n  /**\n   * How large should the button be?\n   */\n  @Input()\n  size: 'small' | 'medium' | 'large' = 'medium';\n\n  /**\n   * Button contents\n   *\n   * @required\n   */\n  @Input()\n  label = 'Button';\n\n  /**\n   * Button contents label 2\n   *\n   * @required\n   */\n   @Input()\n   label2 = 'Button 2';\n\n  /**\n   * Button labelClass\n   *\n   * @required\n   */\n   @Input()\n   labelClass = '';\n\n  /**\n   * Optional click handler\n   */\n  @Output()\n  onClick = new EventEmitter<Event>();\n\n  /**\n   * ngOnChanges\n   * @param changes \n   */\n  ngOnChanges(changes: SimpleChanges): void {\n    console.log(\"[Inside ButtonComponent ngOnChanges function]\");\n    this.label2 = \"label2 Updated via OnChanges\";\n    this.labelClass = \"storybook-button--primary storybook-button--\" + this.size;\n    this.ref.detectChanges();\n    console.log(\"[Completed ButtonComponent ngOnChanges function]\");\n  }\n\n  public get classes(): string[] {\n    const mode = this.primary ? 'storybook-button--primary' : 'storybook-button--secondary';\n\n    return ['storybook-button', `storybook-button--${this.size}`, mode];\n  }\n}\n",
+            "sourceCode": "import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges, ChangeDetectorRef } from '@angular/core';\n\n@Component({\n  selector: 'storybook-button',\n  template: ` <button\n    type=\"button\"\n    (click)=\"onClick.emit($event)\"\n    class=\"storybook-button {{labelClass}}\"\n    [ngStyle]=\"{ 'background-color': backgroundColor }\"\n  >\n    {{ label }} ~ {{ label2 }}\n  </button>`,\n  styleUrls: ['./button.css'],\n})\nexport default class ButtonComponent implements OnChanges {\n  \n  constructor(\n    private ref: ChangeDetectorRef\n  ) {\n    \n  }\n\n  /**\n   * Is this the principal call to action on the page?\n   */\n  @Input()\n  primary = false;\n\n  /**\n   * What background color to use\n   */\n  @Input()\n  backgroundColor?: string;\n\n  /**\n   * How large should the button be?\n   */\n  @Input()\n  size: 'small' | 'medium' | 'large' = 'medium';\n\n  /**\n   * Button contents\n   *\n   * @required\n   */\n  @Input()\n  label = 'Button';\n\n  /**\n   * Button contents label 2\n   *\n   * @required\n   */\n   @Input()\n   label2 = 'Button 2';\n\n  /**\n   * Button labelClass\n   *\n   * @required\n   */\n   @Input()\n   labelClass = '';\n\n  /**\n   * Optional click handler\n   */\n  @Output()\n  onClick = new EventEmitter<Event>();\n\n  /**\n   * ngOnChanges\n   * @param changes \n   */\n  ngOnChanges(changes: SimpleChanges): void {\n    console.log(\"[Inside ButtonComponent ngOnChanges function]\");\n    this.label2 = \"label2 Updated via OnChanges\";\n    this.labelClass = \"storybook-button--primary storybook-button--\" + this.size;\n    this.ref.detectChanges();\n    console.log(\"[Completed ButtonComponent ngOnChanges function]\");\n  }\n\n  public get classes(): string[] {\n    const mode = this.primary ? 'storybook-button--primary' : 'storybook-button--secondary';\n\n    return ['storybook-button', `storybook-button--${this.size}`, mode];\n  }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -625,21 +625,21 @@
                 "name": "environment",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/environments/environment.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "object",
-                "defaultValue": "{\n  production: false\n}"
-            },
-            {
-                "name": "environment",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "src/environments/environment.prod.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "object",
                 "defaultValue": "{\n  production: true\n}"
+            },
+            {
+                "name": "environment",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/environments/environment.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "object",
+                "defaultValue": "{\n  production: false\n}"
             },
             {
                 "name": "Large",
@@ -786,18 +786,6 @@
                     "type": "literal type"
                 }
             ],
-            "src/environments/environment.ts": [
-                {
-                    "name": "environment",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/environments/environment.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "object",
-                    "defaultValue": "{\n  production: false\n}"
-                }
-            ],
             "src/environments/environment.prod.ts": [
                 {
                     "name": "environment",
@@ -808,6 +796,18 @@
                     "deprecationMessage": "",
                     "type": "object",
                     "defaultValue": "{\n  production: true\n}"
+                }
+            ],
+            "src/environments/environment.ts": [
+                {
+                    "name": "environment",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/environments/environment.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "object",
+                    "defaultValue": "{\n  production: false\n}"
                 }
             ],
             "src/stories/Button.stories.ts": [
